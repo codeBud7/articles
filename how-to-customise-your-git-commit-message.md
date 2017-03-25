@@ -2,8 +2,8 @@
 title: How to customise your git commit message 🚀
 published: true
 description: 
-cover_image: 
-tags: git
+cover_image: https://github.com/codeBud7/articles/blob/master/img/how-to-customise-your-git-commit-message.png?raw=true
+tags: git,bash
 ---
 
 **1. Add default template directory**
@@ -27,6 +27,12 @@ _See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 **3. Add your first hook (e.g. prepare-commit-msg)**
 
 ```
+vi ~/.git-templates/hooks/preapre-commit-msg
+```
+
+_Add a custom hook that puts your branch name to the top of your commit message. (Excluding master, develop)_
+
+```
 if [ -z "$BRANCHES_TO_SKIP" ]; then
   BRANCHES_TO_SKIP=(master develop test)
 fi
@@ -41,7 +47,6 @@ if [ -n "$BRANCH_NAME" ] && ! [[ $BRANCH_EXCLUDED -eq 1 ]] && ! [[ $BRANCH_IN_CO
   sed -i.bak -e "1s/^/$BRANCH_NAME /" $1
 fi
 ```
-_This custom hook puts your branch name to the top of your commit message. (Excluding master, develop)_
 
 _See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 
