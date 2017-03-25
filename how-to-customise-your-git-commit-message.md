@@ -23,8 +23,7 @@ _The hooks are all stored in the hooks subdirectory of the Git directory._
 _See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 
 **3. Add your first hook (e.g. prepare-commit-msg)**
-```
-#!/bin/bash
+```Bash
 if [ -z "$BRANCHES_TO_SKIP" ]; then
   BRANCHES_TO_SKIP=(master develop test)
 fi
