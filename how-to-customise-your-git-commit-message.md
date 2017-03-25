@@ -6,7 +6,7 @@ cover_image:
 tags: git
 ---
 
-1. Add default template directory
+**1. Add default template directory**
 ```
 git config --global init.templatedir '~/.git-templates'
 ```
@@ -14,7 +14,7 @@ _Files and directories in the default template directory (~/.git-templates) whos
 
 _See [git-init](https://git-scm.com/docs/git-init)_
 
-2. Add default hook directory
+**2. Add default hook directory**
 ```
 mkdir -p ~/.git-templates/hooks
 ```
@@ -22,7 +22,7 @@ _The hooks are all stored in the hooks subdirectory of the Git directory._
 
 _See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 
-3. Add your first hook (e.g. prepare-commit-msg)
+**3. Add your first hook (e.g. prepare-commit-msg)**
 ```
 #!/bin/bash
 if [ -z "$BRANCHES_TO_SKIP" ]; then
@@ -43,13 +43,13 @@ _This custom hook puts your branch name to the top of your commit message. (Excl
 
 _See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 
-4. Make the hook executable
+**4. Make the hook executable**
 ```
 chmod +x ~/.git-templates/hooks/*
 ```
 _Git hooks are not made executable by default._
 
-5.  Re-initialize git in each existing repository
+**5. Re-initialize git in each existing repository**
 ```
 git init
 ```
