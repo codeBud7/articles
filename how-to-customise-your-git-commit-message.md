@@ -1,6 +1,6 @@
 ---
 title: How to customise your git commit message 🚀
-published: false
+published: true
 description: 
 cover_image: 
 tags: git
