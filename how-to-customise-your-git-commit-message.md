@@ -1,5 +1,5 @@
 ---
-title: How to customise your git commit messages
+title: How to customise your git commit message
 published: false
 description: 
 cover_image: 
