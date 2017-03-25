@@ -6,24 +6,25 @@ cover_image:
 tags: git
 ---
 
-1. Enable git templates
+1. Add default template directory
 ```
 git config --global init.templatedir '~/.git-templates'
 ```
+_Files and directories in the default template directory (~/.git-templates) whose name do not start with a dot will be copied to the specific $GIT_DIR after it is created._
 
-_This tells git to copy everything in ~/.git-templates to your per-project .git/ directory when you run git init._
+_See [git-init](https://git-scm.com/docs/git-init)_
 
-2. Create a directory to hold the global hooks
+2. Add default hook directory
 ```
 mkdir -p ~/.git-templates/hooks
 ```
+_The hooks are all stored in the hooks subdirectory of the Git directory._
 
-3. Write your hooks in ~/.git-templates/hooks
+_See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
+
+3. Add your first hook (e.g. prepare-commit-msg)
 ```
 #!/bin/bash
-
-# This way you can customize which branches should be skipped when
-# prepending commit message. 
 if [ -z "$BRANCHES_TO_SKIP" ]; then
   BRANCHES_TO_SKIP=(master develop test)
 fi
@@ -38,22 +39,27 @@ if [ -n "$BRANCH_NAME" ] && ! [[ $BRANCH_EXCLUDED -eq 1 ]] && ! [[ $BRANCH_IN_CO
   sed -i.bak -e "1s/^/$BRANCH_NAME /" $1
 fi
 ```
+_This custom hook puts your branch name to the top of your commit message. (Excluding master, develop)_
 
-4. Make sure the hook is executable
-```
-chmod a+x ~/.git-templates/hooks/*
-```
+_See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 
-5. Re-initialize git in each existing repo you'd like to use this in
+4. Make the hook executable
+```
+chmod +x ~/.git-templates/hooks/*
+```
+_Git hooks are not made executable by default._
+
+5.  Re-initialize git in each existing repository
 ```
 git init
 ```
+_To use your new hook you have to re-initialize git._
 
-NOTE:
-* If you already have a hook defined in your local git repo, this will not overwrite it.
+_See [git-init](https://git-scm.com/docs/git-init)_
 
-Related:
+## NOTE:
+* If a hook is already defined in your local git repository the new hook won't overwrite it.
+* You might have to set the permissions on your new hook. (sudo chmod 775 .git/hooks/prepare-commit-msg)
+
+## Related:
 * https://chris.beams.io/posts/git-commit/
-* https://help.github.com/articles/changing-a-commit-message/
-* https://coderwall.com/p/jp7d5q/create-a-global-git-commit-hook
-* https://gist.github.com/bartoszmajsak/1396344
