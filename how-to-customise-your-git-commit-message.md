@@ -57,9 +57,9 @@ _To use your new hook you have to re-initialize git._
 
 _See [git-init](https://git-scm.com/docs/git-init)_
 
-## NOTE:
+###### NOTE:
 * If a hook is already defined in your local git repository the new hook won't overwrite it.
 * You might have to set the permissions on your new hook. (sudo chmod 775 .git/hooks/prepare-commit-msg)
 
-## Related:
+###### Related:
 * https://chris.beams.io/posts/git-commit/
