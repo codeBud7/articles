@@ -2,7 +2,7 @@
 title: How to customise your git commit message 🚀
 published: true
 description: 
-cover_image: https://github.com/codeBud7/articles/blob/master/img/how-to-customise-your-git-commit-message.png?raw=true
+cover_image: 
 tags: git,bash
 ---
 
