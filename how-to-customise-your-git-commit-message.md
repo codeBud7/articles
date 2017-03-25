@@ -20,7 +20,7 @@ _See [git-init](https://git-scm.com/docs/git-init)_
 ```
 mkdir -p ~/.git-templates/hooks
 ```
-_The hooks are all stored in the hooks subdirectory of the Git directory._
+_The hooks are stored in the hooks subdirectory of the default template directory._
 
 _See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 
