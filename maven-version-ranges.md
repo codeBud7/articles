@@ -1,5 +1,5 @@
 ---
-title: Maven version ranges
+title: About Maven version ranges
 published: true
 description: Understand how maven version ranges are working
 cover_image: 
