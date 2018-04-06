@@ -1,23 +1,24 @@
 ---
 title: How to customise your git commit message 🚀
 published: true
-description: 
+description: Six steps to defining your git commit workflow
 cover_image: 
 tags: git,bash
 ---
 
 **1. Add default template directory**
 
-```
+```bash
 git config --global init.templatedir '~/.git-templates'
 ```
-_Files and directories in the default template directory (~/.git-templates) whose name do not start with a dot will be copied to the specific $GIT_DIR after it is created._
+
+_Files and directories in the default template directory (~/.git-templates) whose name do not start with a dot will be copied to the specific $GitDir after it is created._
 
 _See [git-init](https://git-scm.com/docs/git-init)_
 
 **2. Add default hook directory**
 
-```
+```bash
 mkdir -p ~/.git-templates/hooks
 ```
 _The hooks are stored in the hooks subdirectory of the default template directory._
@@ -26,13 +27,15 @@ _See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 
 **3. Add your first hook (e.g. prepare-commit-msg)**
 
-```
-vi ~/.git-templates/hooks/preapre-commit-msg
+```bash
+vi ~/.git-templates/hooks/prepare-commit-msg
 ```
 
 _Add a custom hook that puts your branch name to the top of your commit message. (Excluding master, develop)_
 
-```
+```bash
+#!/bin/sh
+
 if [ -z "$BRANCHES_TO_SKIP" ]; then
   BRANCHES_TO_SKIP=(master develop test)
 fi
@@ -52,14 +55,14 @@ _See [git-hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)_
 
 **4. Make the hook executable**
 
-```
+```bash
 chmod +x ~/.git-templates/hooks/*
 ```
 _Git hooks are not made executable by default._
 
 **5. Re-initialize git in each existing repository**
 
-```
+```bash
 git init
 ```
 _To use your new hook you have to re-initialize git._
@@ -68,16 +71,32 @@ _See [git-init](https://git-scm.com/docs/git-init)_
 
 **6. Commit 🚀**
 
-```
+```bash
 git commit -v
 ```
-_What does it look like?_
-![alt text](https://github.com/codeBud7/articles/blob/master/img/how-to-customise-your-git-commit-message.png "Sample")
+_How does it look like?_
+
+![alt text](https://github.com/codeBud7/articles/blob/master/img/how-to-customise-your-git-commit-message.png?raw=true "Sample")
 
 
-###### NOTE:
-* If a hook is already defined in your local git repository the new hook won't overwrite it.
-* You might have to set the permissions on your new hook. (sudo chmod 775 .git/hooks/prepare-commit-msg)
+**7. Automation 🤖**
+If you'd like to add the same commit message for every git project you could  configure something like this:
 
-###### Related:
-* https://chris.beams.io/posts/git-commit/
+First create your template file. (For example `~/.gitmessage`)
+```bash
+Why:
+* 
+```
+
+After that you can simply add this file to your `~/.gitconfig`
+```bash
+[commit]
+    template = ~/.gitmessage
+```
+
+# Hints 💡
+👉 If a hook is already defined in your local git repository the new hook won't overwrite it.
+👉 You might have to set the permissions on your new hook. (sudo chmod 775 .git/hooks/prepare-commit-msg)
+
+##### RELATED:
+[Chris Beams about git commit messages](https://chris.beams.io/posts/git-commit/)
